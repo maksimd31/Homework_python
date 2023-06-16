@@ -21,10 +21,10 @@ num = 171  # число
 step = 16  # степень
 
 
-def dict123(arg):
+def dict123(arg, arg_dict):
     """ Функция поиска по словарю """
-    if arg in dict_ras:
-        return dict_ras.get(arg)
+    if arg in arg_dict:
+        return arg_dict.get(arg)
 
 
 def convert(arg_num, arg_step):
@@ -39,23 +39,24 @@ def convert(arg_num, arg_step):
 print(convert(num, step))
 
 
-def remove_str(arg):
-    return arg[:-2]
+def the_first_stream(arg_result,arg_num,arg_step):
+    return str(arg_num % arg_step) + arg_result
 
 
-def convert_2(arg_num, arg_step):
+def convert_2(arg_num, arg_step, arg_dict):
     """"Эта функция №2 которая возвращает более правильные ответы,
     а именно буквы согласно правилами конвертирования они указаны в словаре"""
     converted_list = []
     result = ''
     while arg_num > 0:
-        result = str(arg_num % arg_step) + result
+        # result = str(arg_num % arg_step) + result
+        result = the_first_stream(result,arg_num,arg_step)
         if len(result) >= 2:
-            rr = dict123(result[0:2])
+            rr = dict123(result[0:2], arg_dict)
             converted_list.append(rr)
             converted_list.reverse()
             # list_concatenation = ','.join(converted_list)
-        arg_num = arg_num // arg_step
+        arg_num //= arg_step
     if len(result) > 2:
         list_concatenation = ','.join(converted_list)
         print(list_concatenation)
@@ -64,4 +65,4 @@ def convert_2(arg_num, arg_step):
 
 
 # Тут довольно долго мучался что бы сделать все по уму
-convert_2(num, step)
+convert_2(num, step, dict_ras)
