@@ -19,3 +19,4 @@ def calculate_fraction(arg1: str, arg2: str):
 
 
 print(calculate_fraction(a, b))
+

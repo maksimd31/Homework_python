@@ -4,10 +4,10 @@
 matrix = [[1, 2], [3, 4]]
 
 
-def matrix_transpositions(arg) -> str:
+def matrix_transpositions(arg):
     convert_matrix = zip(*arg)  # но работает только при равносторонней матрице,
     # то есть будет работать до самого короткой строкой матрицы
-    return convert_matrix  # выводим список кортежей
+    return tuple(convert_matrix)  # выводим список кортежей
     # for i in convert_matrix:
     #     return print(i)
 
