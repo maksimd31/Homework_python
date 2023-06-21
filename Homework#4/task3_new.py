@@ -61,38 +61,36 @@ print(information_field)
 
 choice = int(input("Ваш выбор: "))
 
-while choice != 0:
-    match choice:
-        case 1:
-            amount = int(input("Введите сумму для пополнения: "))
-            if amount % 50 != 0:
-                print("Сумма должна быть кратной 50 у.е.")
-            else:
-                deposit(amount)
-                print('Пополнение успешно прошло')
-                break
-        case 2:
-            amount = int(input("Введите сумму для снятия: "))
-            if amount % 50 != 0:
-                print("Сумма должна быть кратной 50 у.е.")
-            else:
-                withdraw(amount)
-                break
-        case 0:
-            print("Выход")
-
-
-# def choice_():
-#     while choice != 0:
-#         if choice == 1:
+# while choice != 0:
+#     match choice:
+#         case 1:
+#             amount = int(input("Введите сумму для пополнения: "))
+#             replenishment(amount)
 #             amount = int(input("Введите сумму для пополнения: "))
 #             if amount % 50 != 0:
 #                 print("Сумма должна быть кратной 50 у.е.")
-#                 break
 #             else:
 #                 deposit(amount)
 #                 print('Пополнение успешно прошло')
+#
+#         case 2:
+#             amount = int(input("Введите сумму для снятия: "))
+#             if amount % 50 != 0:
+#                 print("Сумма должна быть кратной 50 у.е.")
+#             else:
+#                 withdraw(amount)
 #                 break
+#         case 0:
+#             print("Выход")
+
+# while choice != 0:
+#     if choice == 1:
+#         amount = int(input("Введите сумму для пополнения: "))
+#         if amount % 50 != 0:
+#             print("Сумма должна быть кратной 50 у.е.")
+#         else:
+#             deposit(amount)
+#             print('Пополнение успешно прошло')
 #     if choice == 2:
 #         amount = int(input("Введите сумму для снятия: "))
 #         if amount % 50 != 0:
@@ -104,3 +102,20 @@ while choice != 0:
 #
 #
 # choice_()
+
+while choice != 0:
+    print(information_field)
+    choice = int(input("Ваш выбор: "))
+    if choice == 1:
+        amount = int(input("Введите сумму для пополнения: "))
+        if amount % 50 != 0:
+            print("Сумма должна быть кратной 50 у.е.")
+        else:
+            deposit(amount)
+            print('Пополнение успешно прошло')
+    if choice == 2:
+        amount = int(input("Введите сумму для снятия: "))
+        if amount % 50 != 0:
+            print("Сумма должна быть кратной 50 у.е.")
+        else:
+            withdraw(amount)
