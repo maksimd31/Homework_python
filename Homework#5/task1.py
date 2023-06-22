@@ -21,3 +21,17 @@ def get_file_info(path: str) -> tuple:  # очень прикольная кон
 
 
 print(get_file_info(str(fpath)))
+
+
+# Тут 2 варианта
+def get_file_info_ver2(file_path):
+    path, file = os.path.split(file_path)
+    name, ext = os.path.splitext(file)
+    return path, name, ext
+
+
+# Вызов функции
+file_path = 'task2.py'
+file_info = get_file_info(file_path)
+print(file_info)
+
