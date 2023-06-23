@@ -6,6 +6,8 @@
 # Если ферзи не бьют друг друга верните истину, а если бьют - ложь.
 import random
 
+__add__ = ['queen_8']  # не работает
+
 
 # Это очень сложная задача
 
@@ -15,7 +17,7 @@ def check_queens(queens):
     for i in range(len(queens)):
         for j in range(i + 1, len(queens)):
             if queens[i][0] == queens[j][0] or queens[i][1] == queens[j][1] or \
-                    abs(queens[i][0] - queens[j][0]) == abs(queens[i][1] - queens[j][1]):
+                    abs(queens[i][0] - queens[j][0]) == abs(queens[i][1] - queens[j][1]):  # abs меняет полюс на минус
                 return False
     return True
 
@@ -26,7 +28,7 @@ def check_queens(queens):
 # *Выведите все успешные варианты расстановок
 
 def generate_random_queens(arg_pole):
-    """Рандомное поле где arg_pole размер поля, если всегда использовать поле 8х8 очень долго ищет - грузит"""
+    """Рандомное поле, где arg_pole размер поля, если всегда использовать поле 8х8 очень долго ищет - грузит"""
     queens = []
     for i in range(arg_pole):
         queen = (random.randint(1, arg_pole), random.randint(1, arg_pole))
