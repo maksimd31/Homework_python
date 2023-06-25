@@ -27,6 +27,7 @@ def check_queens(queens):
 # Проверяйте различные случайные варианты и выведите 4 успешных расстановки.
 # *Выведите все успешные варианты расстановок
 
+# Это очень сложное задание
 def generate_random_queens(arg_pole):
     """Рандомное поле, где arg_pole размер поля, если всегда использовать поле 8х8 очень долго ищет - грузит"""
     queens = []
@@ -38,7 +39,7 @@ def generate_random_queens(arg_pole):
 
 def queen_8(arg_pole):
     successful_queens = []
-    while len(successful_queens) < 1:
+    while len(successful_queens) < 1:  # Выводит первую постановку ферзей # для скорости
         queens = generate_random_queens(arg_pole)
         if check_queens(queens):
             successful_queens.append(queens)
