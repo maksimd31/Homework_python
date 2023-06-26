@@ -23,17 +23,17 @@ import os
 def batch_rename_files(dir_path, new_name, old_ext, new_ext):
     """
     Параметры
-    dir_path (str): Путь к каталогу
-    new_name (str): Новое имя
-    old_ext (str): Расширение файлов, которые будут переименованы
-    new_ext (str): Новое расширение
+    :param dir_path : Путь к каталогу (str)
+    :param new_name : Новое имя (str)
+    :param old_ext : Расширение файлов, которые будут переименованы (str)
+    :param new_ext : Новое расширение (str)
     """
     counter = 1
     for file in os.listdir(dir_path):
         if file.endswith(old_ext):
             # Получить старое имя файла без расширения
             old_name = os.path.splitext(file)[0]
-            # Создайте новое имя файла со счетчиком, новым именем и новым расширением
+            # Создаем  новое имя файла со счетчиком, новым именем и новым расширением
             new_file_name = f"{old_name}_{new_name}_{counter}.{new_ext}"
             # Если новое имя файла уже существует, увеличьте счетчик
             while os.path.exists(os.path.join(dir_path, new_file_name)):

@@ -8,11 +8,14 @@ print("""
 """)
 # Решение с семинара
 
+
 from random import randint, uniform
 
 MIN = -1000
 MAX = 1000
 NUM_ROW = 5
+
+__all__ = ['task_1', NUM_ROW]
 
 
 def task_1(count_row, filename):
