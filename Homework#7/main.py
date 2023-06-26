@@ -11,5 +11,5 @@ from Seminar_project.sem_task4 import task_4
 
 task_1(5, '../numbers_main.txt')
 task_2(10, '../names_main.txt')
-task_3('../names_main.txt','../numbers_main.txt')
-task_4('txt',5)
+task_3('../names_main.txt', '../numbers_main.txt')
+task_4('txt', 5)
