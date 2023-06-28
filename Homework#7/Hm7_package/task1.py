@@ -20,6 +20,8 @@
 import os
 import webbrowser
 
+__all__ = ["batch_rename_files"]  # Работает
+
 
 def batch_rename_files(dir_path, new_name, old_ext, new_ext):
     """
@@ -56,6 +58,9 @@ def main():
 
 if __name__ == '__main__':
     main()
-# else:
-#     zac()
-#     raise SystemExit('Это не библиотека')
+
+# else: # Этим исключением я хотел заблокировать использования модуля в роле библиотеки,
+# если вернуть это условие то вылезет прикольная картина.
+# Выдаст ошибка в консоле что это не библиотека
+    # zac()
+    # raise SystemExit('Это не библиотека')
