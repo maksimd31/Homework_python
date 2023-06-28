@@ -18,6 +18,7 @@
 # 3. Соберите из созданных на уроке и в рамках домашнего задания функций пакет для работы с файлами.
 
 import os
+import webbrowser
 
 
 def batch_rename_files(dir_path, new_name, old_ext, new_ext):
@@ -33,7 +34,7 @@ def batch_rename_files(dir_path, new_name, old_ext, new_ext):
         if file.endswith(old_ext):
             # Получить старое имя файла без расширения
             old_name = os.path.splitext(file)[0]
-            # Создаем  новое имя файла со счетчиком, новым именем и новым расширением
+            # Создаем новое имя файла со счетчиком, новым именем и новым расширением
             new_file_name = f"{old_name}_{new_name}_{counter}.{new_ext}"
             # Если новое имя файла уже существует, увеличьте счетчик
             while os.path.exists(os.path.join(dir_path, new_file_name)):
@@ -42,3 +43,19 @@ def batch_rename_files(dir_path, new_name, old_ext, new_ext):
                 # Переименуйте файл
             os.rename(os.path.join(dir_path, file), os.path.join(dir_path, new_file_name))
             counter += 1
+
+
+def zac():
+    link = "https://www.meme-arsenal.com/assets/img/not-found.jpg"
+    webbrowser.open(link)
+
+
+def main():
+    batch_rename_files('..', 'test2', 'md', 'txt')
+
+
+if __name__ == '__main__':
+    main()
+# else:
+#     zac()
+#     raise SystemExit('Это не библиотека')
