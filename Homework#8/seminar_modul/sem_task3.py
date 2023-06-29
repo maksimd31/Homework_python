@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 
+__add__ = ['get_from_user']
 
 def get_from_user(file: Path) -> None:
     json_file = {}

@@ -12,6 +12,8 @@ import csv
 import json
 from pathlib import Path
 
+__add__ = ['csv_to_json']
+
 
 def csv_to_json(file_out: Path, file_in: Path) -> None:
     json_list = []

@@ -3,19 +3,24 @@
 # 📌 Имена пишите с большой буквы.
 # 📌 Каждую пару сохраняйте с новой строки.
 
+
 import json
-from pathlib import Path
+
+__all__ = ['write_json']
 
 
-def txt_to_json(file: Path) -> None:
-    file_data = {}
-    with open(file, 'r', encoding='utf-8') as f:
-        for line in f:
-            name, number = line.split(" ")
-            file_data[name.capitalize()] = float(number)
-    with open(file.stem + '.json', 'w') as f:
-        json.dump(file_data, f, indent=2)
+def write_json(filename):
+    with (open(filename, "r", encoding="utf-8") as res,
+          open("output.json", "w", encoding="utf-8") as j):
+        dict_res = dict()
+        for item in res:
+            key, value = item.replace("\n", "").split((" "))
+            dict_res[key.capitalize()] = value
+        # json_res =json.dumps(dict_res,indent=1,ensure_ascii=False)
+        json.dump(dict_res, j, ensure_ascii=False, indent=1)
+        # j.write(json_res)
 
 
 if __name__ == '__main__':
-    txt_to_json(Path('../seventh/result.txt'))
+    filename = 'result.txt'
+    write_json(filename)

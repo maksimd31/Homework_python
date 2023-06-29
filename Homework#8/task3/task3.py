@@ -87,6 +87,6 @@ def process_directory(dir_path):
 
 
 if __name__ == '__main__':
-    process_directory('..')
+    process_directory('../..')
 else:
     __add_ = ['process_directory']

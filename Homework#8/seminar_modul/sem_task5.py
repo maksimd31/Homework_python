@@ -6,6 +6,8 @@ import os
 import json
 import pickle
 
+__add__ = ['process_json_files']
+
 
 def process_json_files(directory):
     """
