@@ -11,24 +11,26 @@
 import csv
 import json
 import math
+from functools import wraps
+from pathlib import Path
 from pprint import pprint
 from random import randint, random
 
 
-def square_roots(a_arg, b_arg, c_arg):
-    """Функция 1. Нахождение корней квадратного уравнения"""
-    d_arg = b_arg ** 2 - 4 * a_arg * c_arg
-    if d_arg > 0:
-        x1 = (-b_arg + d_arg ** 0.5) / (2 * a_arg)
-        x2 = (-b_arg - d_arg ** 0.5) / (2 * a_arg)
-        return x1, x2
-        # return f'x1 = {x1}', f'x1 = {x2}'
-    elif d_arg == 0:
-        x1 = -b_arg / (2 * a_arg)
-        return x1
-        # return f'x = {-b_arg / (2 * a_arg)}'
-    else:
-        return None
+# def square_roots(a_arg, b_arg, c_arg):
+#     """Функция 1. Нахождение корней квадратного уравнения"""
+#     d_arg = b_arg ** 2 - 4 * a_arg * c_arg
+#     if d_arg > 0:
+#         x1 = (-b_arg + d_arg ** 0.5) / (2 * a_arg)
+#         x2 = (-b_arg - d_arg ** 0.5) / (2 * a_arg)
+#         return x1, x2
+#         # return f'x1 = {x1}', f'x1 = {x2}'
+#     elif d_arg == 0:
+#         x1 = -b_arg / (2 * a_arg)
+#         return x1
+#         # return f'x = {-b_arg / (2 * a_arg)}'
+#     else:
+#         return None
 
 
 def square_roots_math(a_arg, b_arg, c_arg):
@@ -52,27 +54,35 @@ def csv_generator(filename, rows):
 def decorator_csv(func):
     """3. Декоратор, запускающий функцию нахождения корней квадратного уравнения с каждой тройкой чисел из csv файла."""
 
+    @wraps(func)
     def wrapper(filename):
         with open(filename, newline='', encoding='utf-8') as csv_file:
             reader = csv.reader(csv_file)
             for i in reader:
                 a_arg, b_arg, c_arg = map(int, i)
                 x1, x2 = func(a_arg, b_arg, c_arg)
-                pprint(f'a = {a_arg} b = {b_arg} c = {c_arg} \nx1 = {x1} x2 = {x2}')
+                dct = {'a': a_arg, 'b': b_arg, 'c': c_arg, 'x1': x1, 'x2': x2}
+                # pprint(f'a = : {a_arg}, b = : {b_arg}, c = : {c_arg}, x1 = : {x1}, x2 = : {x2}')
+        # return f'a = : {a_arg}, b = : {b_arg}, c = : {c_arg}, x1 = : {x1}, x2 = : {x2}'
+        return dct, f'a = : {a_arg}, b = : {b_arg}, c = : {c_arg}, x1 = : {x1}, x2 = : {x2}'
 
     return wrapper
 
 
-def JSON_decorator(func):
+def json_decorator(func):
+    @wraps(func)
     def wrapper(*args, **kwargs):
         res = func(*args, **kwargs)
-        with open('log.json', mode='a', newline='',encoding='utf-8') as json_f:
+        with open('log.json', mode='a', newline='', encoding='utf-8') as json_f:
             data = {
-                'F_name': func.__name__,
-                'args': args,
-                'kwargs': kwargs,
-                'result': res,
+                'ii': {
+                    'F_name': func.__name__,
+                    'args': args,
+                    'kwargs': kwargs,
+                    'result': res
+                }
             }
+            json_f.write('\n')
             json.dump(data, json_f)
 
     return wrapper
@@ -81,24 +91,27 @@ def JSON_decorator(func):
 # @decorator_csv
 # def decorator_csv_input(a, b, c):
 #     return square_roots(a, b, c)
-
-
+@json_decorator
 @decorator_csv
 def decorator_csv_input_math(a, b, c):
     return square_roots_math(a, b, c)
 
 
-@JSON_decorator
-def decorator_csv_input_log(a, b, c):
-    return square_roots_math(a, b, c)
-
+# @JSON_decorator
+# def decorator_csv_input_log(a, b, c):
+#     return square_roots_math(a, b, c)
+#
 
 if __name__ == '__main__':
-    """Функция 1. Нахождение корней квадратного уравнения"""
+    # """Функция 1. Нахождение корней квадратного уравнения"""
     # a, b, c = map(int, input().split())
     # square_roots(a, b, c)
-    """Функция Генерация csv файла с тремя случайными числами в каждой строке. 100-1000 строк."""
+    # """Функция Генерация csv файла с тремя случайными числами в каждой строке. 100-1000 строк."""
     csv_generator('data.csv', 500)
     decorator_csv_input_math('data.csv')
-    decorator_csv_input_log(1, 2, 1)
+    # decorator_csv_input_log(1, 2, 1)
+
+    # decorator_csv_input_log(1, 2, 1)
     # decorator_csv_input('data.csv')
+
+# тут я что-то не сообразил как записать все в логированние все данные
