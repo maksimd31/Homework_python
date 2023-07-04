@@ -6,6 +6,8 @@
 
 from typing import Callable
 
+__all__ = ['counter_wrap']
+
 
 def counter_wrap(count: int):
     def deco(func: Callable):
@@ -13,7 +15,9 @@ def counter_wrap(count: int):
             for _ in range(count):
                 result = func(*args, **kwargs)
             return result
+
         return wrapper
+
     return deco
 
 

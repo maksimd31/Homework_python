@@ -2,6 +2,8 @@ import json
 from typing import Callable
 from pathlib import Path
 
+__all__ = ['to_json_wrapper']
+
 
 def to_json_wrapper(func) -> Callable[[], None]:
     file = Path(f"{func.__name__}.json")

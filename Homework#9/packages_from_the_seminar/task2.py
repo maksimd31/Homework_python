@@ -12,6 +12,8 @@ from random import randint
 from task4 import counter_wrap
 from jas import to_json_wrapper
 
+__all__ = ['binary_search_game_wrap']
+
 
 def binary_search_game_wrap(func) -> Callable[[], None]:
     def wrapper(num: int, count: int, *args, **kwargs):
