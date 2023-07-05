@@ -56,28 +56,22 @@ def decorator_csv(func):
     @wraps(func)
     def wrapper(filename):
         with open(filename, newline='', encoding='utf-8') as csv_file:
+            listt = []
             dictt = {}
             reader = csv.reader(csv_file)
             for i in reader:
                 a_arg, b_arg, c_arg = map(int, i)
                 x1, x2 = func(a_arg, b_arg, c_arg)
                 # тут что-то я долго не мог сообразить как закинуть все результаты, а не по последнему,
-                # так и не понял как время поджимает, сдаю как есть ))
+                # так и не понял как время поджимает, сдаю как есть )) Смог через лист
                 dct = {'a': a_arg, 'b': b_arg, 'c': c_arg, 'x1': x1, 'x2': x2}
                 dictt.update(dct)
+                listt.append(dct)
                 pprint(f'a = : {a_arg}, b = : {b_arg}, c = : {c_arg}, x1 = : {x1}, x2 = : {x2}')
         # return f'a = : {a_arg}, b = : {b_arg}, c = : {c_arg}, x1 = : {x1}, x2 = : {x2}'
         # write_to_json('data2.json', dct)
-        return dictt, f'a = : {a_arg}, b = : {b_arg}, c = : {c_arg}, x1 = : {x1}, x2 = : {x2}'
-
-    return wrapper
-
-
-def save_json(func):
-    def wrapper(*args, kwargs):
-        with open('result.json', 'w', encoding='utf-8') as f:
-            res = func(*args, **kwargs)
-            json.dump(res, f, ensure_ascii=False, indent=2)
+        # return f'a = : {a_arg}, b = : {b_arg}, c = : {c_arg}, x1 = : {x1}, x2 = : {x2}'
+        return listt, a_arg, b_arg, c_arg, x1, x2
 
     return wrapper
 
@@ -86,17 +80,16 @@ def json_decorator(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         res = func(*args, **kwargs)
-        with open('log.json', mode='a', newline='', encoding='utf-8') as json_f:
+        with open('log2.json', mode='a', newline='', encoding='utf-8') as json_f:
+            # data = {'res': res}
             data = {
-                'ii': {
-                    'F_name': func.__name__,
-                    'args': args,
-                    'kwargs': kwargs,
-                    'result': res
-                }
+                'F_name': func.__name__,
+                'args': args,
+                # 'kwargs': kwargs,
+                'result': res
             }
             json_f.write('\n')
-            json.dump(data, json_f, indent=4, sort_keys=True)
+            json.dump(data, json_f, indent=2, sort_keys=True)
 
     return wrapper
 
@@ -110,10 +103,10 @@ def decorator_csv_input_math(a, b, c):
     return square_roots_math(a, b, c)
 
 
-# @JSON_decorator
-# def decorator_csv_input_log(a, b, c):
-#     return square_roots_math(a, b, c)
-#
+@json_decorator
+def decorator_csv_input_log(a, b, c):
+    return square_roots_math(a, b, c)
+
 
 if __name__ == '__main__':
     # """Функция 1. Нахождение корней квадратного уравнения"""
@@ -122,6 +115,7 @@ if __name__ == '__main__':
     # """Функция Генерация csv файла с тремя случайными числами в каждой строке. 100-1000 строк."""
     csv_generator('data.csv', 500)
     decorator_csv_input_math('data.csv')
+
     # decorator_csv_input_log(1, 2, 1)
 
     # decorator_csv_input_log(1, 2, 1)

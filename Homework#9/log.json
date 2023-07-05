@@ -376,3 +376,130 @@
         ]
     }
 }
+{
+    "ii": {
+        "F_name": "decorator_csv_input_math",
+        "args": [
+            "data.csv"
+        ],
+        "kwargs": {},
+        "result": [
+            {
+                "a": 88,
+                "b": 65,
+                "c": 34,
+                "x1": null,
+                "x2": null
+            },
+            "a = : 88, b = : 65, c = : 34, x1 = : None, x2 = : None"
+        ]
+    }
+}
+{
+    "ii": {
+        "F_name": "decorator_csv_input_log",
+        "args": [
+            1,
+            2,
+            1
+        ],
+        "kwargs": {},
+        "result": [
+            -1.0,
+            -1.0
+        ]
+    }
+}
+{
+    "ii": {
+        "F_name": "decorator_csv_input_math",
+        "args": [
+            "data.csv"
+        ],
+        "kwargs": {},
+        "result": [
+            {
+                "a": 67,
+                "b": 66,
+                "c": 52,
+                "x1": null,
+                "x2": null
+            },
+            "a = : 67, b = : 66, c = : 52, x1 = : None, x2 = : None"
+        ]
+    }
+}
+{
+    "ii": {
+        "F_name": "decorator_csv_input_log",
+        "args": [
+            1,
+            2,
+            1
+        ],
+        "kwargs": {},
+        "result": [
+            -1.0,
+            -1.0
+        ]
+    }
+}
+{
+    "F_name": "decorator_csv_input_math",
+    "args": [
+        "data.csv"
+    ],
+    "kwargs": {},
+    "result": [
+        {
+            "a": 58,
+            "b": 30,
+            "c": 59,
+            "x1": null,
+            "x2": null
+        },
+        "a = : 58, b = : 30, c = : 59, x1 = : None, x2 = : None"
+    ]
+}
+{
+    "F_name": "decorator_csv_input_log",
+    "args": [
+        1,
+        2,
+        1
+    ],
+    "kwargs": {},
+    "result": [
+        -1.0,
+        -1.0
+    ]
+}
+{
+    "F_name": "decorator_csv_input_math",
+    "args": [
+        "data.csv"
+    ],
+    "kwargs": {},
+    "result": "a = : 1, b = : 15, c = : 15, x1 = : -1.0773837106674353, x2 = : -13.922616289332565"
+}
+{
+    "F_name": "decorator_csv_input_log",
+    "args": [
+        1,
+        2,
+        1
+    ],
+    "kwargs": {},
+    "result": [
+        -1.0,
+        -1.0
+    ]
+}
+{
+    "F_name": "decorator_csv_input_math",
+    "args": [
+        "data5.csv"
+    ],
+    "kwargs": {},
+    "result": "a = : 89, b = : 22, c = : 71, x1 = : None, x2 = : None"
+}
