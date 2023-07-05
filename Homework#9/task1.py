@@ -12,25 +12,24 @@ import csv
 import json
 import math
 from functools import wraps
-from pathlib import Path
 from pprint import pprint
-from random import randint, random
+from random import randint
 
 
-# def square_roots(a_arg, b_arg, c_arg):
-#     """Функция 1. Нахождение корней квадратного уравнения"""
-#     d_arg = b_arg ** 2 - 4 * a_arg * c_arg
-#     if d_arg > 0:
-#         x1 = (-b_arg + d_arg ** 0.5) / (2 * a_arg)
-#         x2 = (-b_arg - d_arg ** 0.5) / (2 * a_arg)
-#         return x1, x2
-#         # return f'x1 = {x1}', f'x1 = {x2}'
-#     elif d_arg == 0:
-#         x1 = -b_arg / (2 * a_arg)
-#         return x1
-#         # return f'x = {-b_arg / (2 * a_arg)}'
-#     else:
-#         return None
+def square_roots(a_arg, b_arg, c_arg):
+    """Функция 1. Нахождение корней квадратного уравнения"""
+    d_arg = b_arg ** 2 - 4 * a_arg * c_arg
+    if d_arg > 0:
+        x1 = (-b_arg + d_arg ** 0.5) / (2 * a_arg)
+        x2 = (-b_arg - d_arg ** 0.5) / (2 * a_arg)
+        return x1, x2
+        # return f'x1 = {x1}', f'x1 = {x2}'
+    elif d_arg == 0:
+        x1 = -b_arg / (2 * a_arg)
+        return x1
+        # return f'x = {-b_arg / (2 * a_arg)}'
+    else:
+        return None
 
 
 def square_roots_math(a_arg, b_arg, c_arg):
@@ -57,14 +56,28 @@ def decorator_csv(func):
     @wraps(func)
     def wrapper(filename):
         with open(filename, newline='', encoding='utf-8') as csv_file:
+            dictt = {}
             reader = csv.reader(csv_file)
             for i in reader:
                 a_arg, b_arg, c_arg = map(int, i)
                 x1, x2 = func(a_arg, b_arg, c_arg)
+                # тут что-то я долго не мог сообразить как закинуть все результаты, а не по последнему,
+                # так и не понял как время поджимает, сдаю как есть ))
                 dct = {'a': a_arg, 'b': b_arg, 'c': c_arg, 'x1': x1, 'x2': x2}
-                # pprint(f'a = : {a_arg}, b = : {b_arg}, c = : {c_arg}, x1 = : {x1}, x2 = : {x2}')
+                dictt.update(dct)
+                pprint(f'a = : {a_arg}, b = : {b_arg}, c = : {c_arg}, x1 = : {x1}, x2 = : {x2}')
         # return f'a = : {a_arg}, b = : {b_arg}, c = : {c_arg}, x1 = : {x1}, x2 = : {x2}'
-        return dct, f'a = : {a_arg}, b = : {b_arg}, c = : {c_arg}, x1 = : {x1}, x2 = : {x2}'
+        # write_to_json('data2.json', dct)
+        return dictt, f'a = : {a_arg}, b = : {b_arg}, c = : {c_arg}, x1 = : {x1}, x2 = : {x2}'
+
+    return wrapper
+
+
+def save_json(func):
+    def wrapper(*args, kwargs):
+        with open('result.json', 'w', encoding='utf-8') as f:
+            res = func(*args, **kwargs)
+            json.dump(res, f, ensure_ascii=False, indent=2)
 
     return wrapper
 
@@ -83,7 +96,7 @@ def json_decorator(func):
                 }
             }
             json_f.write('\n')
-            json.dump(data, json_f)
+            json.dump(data, json_f, indent=4, sort_keys=True)
 
     return wrapper
 
@@ -114,4 +127,4 @@ if __name__ == '__main__':
     # decorator_csv_input_log(1, 2, 1)
     # decorator_csv_input('data.csv')
 
-# тут я что-то не сообразил как записать все в логированние все данные
+# тут я что-то не сообразил как записать все в логированние все данные, записывает по последнему
