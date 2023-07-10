@@ -16,6 +16,7 @@
           
 """
 
+
 class Pectangle:
     def __init__(self, length, width=None):
         """
@@ -117,12 +118,21 @@ class Pectangle:
         # print(b.perimetr(), b.square())
 
 
-rec_1 = Pectangle(5, 5)
-rec_2 = Pectangle(7, 7)
-print(f'{rec_1.perimetr() = } {rec_2.perimetr() =}')
-rec_3 = rec_1 + rec_2
-rec_4 = rec_1 - rec_2
-print(f'{rec_3.length = } {rec_4.width =}')
+if __name__ == '__main__':
+    # Создание экземпляра класса
+    rec_1 = Pectangle(5, 5)
+    rec_2 = Pectangle(7, 7)
 
-print(rec_1 == rec_2)
-print(rec_3 <= rec_4)
+    # Сложение
+    print(f'{rec_1.perimetr() = } {rec_2.perimetr() =}')
+    rec_3 = rec_1 + rec_2
+
+    # Вычитание
+    rec_4 = rec_1 - rec_2
+    print(f'{rec_3.length = } {rec_4.width =}')
+
+    # Сравнение
+    print(rec_1 == rec_2)
+
+    # Сравнение меньше или равно
+    print(rec_3 <= rec_4)
