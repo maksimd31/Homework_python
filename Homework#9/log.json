@@ -490,3 +490,41 @@
         ]
     }
 }
+{
+    "ii": {
+        "F_name": "decorator_csv_input_math",
+        "args": [
+            "data.csv"
+        ],
+        "kwargs": {},
+        "result": [
+            {
+                "a": 68,
+                "b": 2,
+                "c": 40,
+                "x1": null,
+                "x2": null
+            },
+            "a = : 68, b = : 2, c = : 40, x1 = : None, x2 = : None"
+        ]
+    }
+}
+{
+    "ii": {
+        "F_name": "decorator_csv_input_math",
+        "args": [
+            "data.csv"
+        ],
+        "kwargs": {},
+        "result": [
+            {
+                "a": 76,
+                "b": 69,
+                "c": 64,
+                "x1": null,
+                "x2": null
+            },
+            "a = : 76, b = : 69, c = : 64, x1 = : None, x2 = : None"
+        ]
+    }
+}
